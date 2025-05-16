@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    <%-include("partials/header.ejs") %>
+    <main class="m-5">
+      <p class="fw-bold fs-3 text-center text-uppercase">Search Result</p>
+      <% if (results.length > 0) { %> <% results.forEach(post => { %>
+      <div class="card mb-3">
+        <h5 class="card-header"><%= post.name %></h5>
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <p class="card-text"><%= post.content %></p>
+        </div>
+        <div class="d-flex gap-3 m-3">
+          <form
+            action="/edit/<%= post.id %>"
+            method="get"
+            style="display: inline"
+          >
+            <button class="btn btn-primary">Edit</button>
+          </form>
+          <form
+            action="/delete/<%= post.id %>"
+            method="post"
+            style="display: inline"
+          >
+            <button class="btn btn-primary">Delete</button>
+          </form>
+        </div>
+      </div>
+      <% }) %> <% } else { %>
+      <p class="fs-3 text-center text-uppercase">
+        No posts found for "<%= searchItem %>"
+      </p>
+      <% } %>
+    </main>
+    <%-include("partials/footer")%>
+  </body>
+</html>

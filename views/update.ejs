@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Post</title>
+  </head>
+  <body>
+    <%- include("partials/header.ejs") %>
+
+    <main class="m-5">
+      <p class="fw-bold fs-3 text-center text-uppercase">Update Post</p>
+      <% if (locals.postIndex) { %>
+      <form action="/edit/<%= postIndex.id %>" method="post">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            value="<%= postIndex.name %>"
+            required
+            name="name"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">Title:</label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            id="title"
+            value="<%= postIndex.title %>"
+            name="title"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="Content" class="form-label">Content:</label>
+          <textarea
+            class="form-control"
+            id="Content"
+            required
+            rows="3"
+            name="content"
+          >
+ <%= postIndex.content %></textarea
+          >
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit" />
+      </form>
+      <% } %>
+    </main>
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>
