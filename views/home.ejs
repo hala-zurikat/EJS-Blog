@@ -6,11 +6,21 @@
     <title>Home</title>
   </head>
   <body>
+    <style>
+      .custom-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .custom-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+    </style>
     <%-include("partials/header.ejs") %>
     <main class="m-5">
       <p class="fw-bold fs-3 text-center text-uppercase">Quotes</p>
       <% if (locals.posts) { %> <% posts.forEach(post => { %>
-      <div class="card mb-3">
+      <div class="card mb-3 shadow custom-card">
         <h5 class="card-header"><%= post.name %></h5>
         <div class="card-body">
           <h5 class="card-title"><%=post.title%></h5>
